@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var cors = require('cors');
 
 const url = "mongodb+srv://usuario_adm:usuario_adm123@clusterloja.dqhrp.mongodb.net/test?retryWrites=true&w=majority";
 const options = {
@@ -29,6 +30,8 @@ mongoose.connection.on('connected', () => {
 // PRECISA PRA QUANDO ENVIA DADOS NO POST
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 const indexRoute = require('./Routes/index');
 const productsRoute = require('./Routes/products');
